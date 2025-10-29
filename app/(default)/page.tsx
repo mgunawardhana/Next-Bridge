@@ -5,6 +5,7 @@ import Workflows from "@/components/workflows";
 import Features from "@/components/features";
 import Testimonials from "@/components/testimonials";
 import Cta from "@/components/cta";
+import DevelopersSlider from "@/components/DevelopersSlider";
 
 export const metadata = {
     title: "Home - Open PRO", description: "Page description",
@@ -12,12 +13,13 @@ export const metadata = {
 
 export default function Home() {
     return (<>
-            <PageIllustration/>
-            <Hero/>
-            <Workflows/>
-            <Features/>
-            <Testimonials/>
-            <Services/>
-            <Cta/>
-        </>);
+        <PageIllustration/>
+        <Hero/>
+        <Workflows/>
+        <DevelopersSlider/>
+        <Features/>
+        <Testimonials/>
+        <Services/>
+        <Cta/>
+    </>);
 }
