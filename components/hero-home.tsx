@@ -1,6 +1,6 @@
 "use client";
 
-import VideoThumb from "@/public/images/hero-image-01.jpg";
+import VideoThumb from "@/public/images/black-white-.jpg";
 import ModalVideo from "@/components/modal-video";
 
 export default function HeroHome() {
