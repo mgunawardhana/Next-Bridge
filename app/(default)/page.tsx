@@ -10,9 +10,6 @@ import Cta from "@/components/cta";
 import DevelopersSlider from "@/components/DevelopersSlider";
 import Script from "next/script";
 
-// -------------------------------------------------------------------
-// 1. Proper Next.js metadata (title + description + OG)
-// -------------------------------------------------------------------
 export const metadata: Metadata = {
     title:
         "Enterprise Software with Real-Time Transparency & DevSecOps",
@@ -37,9 +34,6 @@ export const metadata: Metadata = {
     },
 };
 
-// -------------------------------------------------------------------
-// 2. JSON-LD schema (rendered as <script type="application/ld+json">)
-// -------------------------------------------------------------------
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
