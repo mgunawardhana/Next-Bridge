@@ -1,4 +1,3 @@
-// app/custom-quote/page.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -25,6 +24,9 @@ export default function CustomQuotePage() {
         studentLevel: ""
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<{type: 'success' | 'error', message: string} | null>(null);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -33,16 +35,88 @@ export default function CustomQuotePage() {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        // Add your form submission logic here
-        alert("Quote request submitted successfully!");
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        try {
+            // Prepare the data to match the API format
+            const apiData = {
+                name: formData.name,
+                whatsappNumber: formData.whatsapp,
+                email: formData.email,
+                country: formData.country,
+                businessType: formData.businessType === "student"
+                    ? `Student - ${formData.studentLevel}`
+                    : formData.businessType,
+                projectDescription: formData.projectDesc
+            };
+
+            console.log("Submitting data:", apiData);
+
+            const response = await fetch('http://31.97.70.39:3005/api/spi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(apiData)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Failed to submit: ${response.statusText} - ${errorText}`);
+            }
+
+            const result = await response.json();
+            console.log("Form submitted successfully:", result);
+
+            setSubmitStatus({
+                type: 'success',
+                message: 'Quote request submitted successfully! We\'ll get back to you within 24 hours.'
+            });
+
+            // Reset form after successful submission
+            setFormData({
+                name: "",
+                whatsapp: "",
+                email: "",
+                country: "",
+                projectDesc: "",
+                businessType: "",
+                studentLevel: ""
+            });
+
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            setSubmitStatus({
+                type: 'error',
+                message: error instanceof Error ? error.message : 'Failed to submit quote request. Please try again or contact support.'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <div className="min-h-screen bg-gray-950 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
+                {/* Back Button */}
+                <button
+                    onClick={() => window.history.back()}
+                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6 group"
+                >
+                    <svg
+                        className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span>Back</span>
+                </button>
+
                 {/* Header */}
                 <div className="text-center mb-10">
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -52,6 +126,28 @@ export default function CustomQuotePage() {
                         Tell us about your project and we'll create a tailored solution for you
                     </p>
                 </div>
+
+                {/* Status Message */}
+                {submitStatus && (
+                    <div className={`mb-6 p-4 rounded-lg ${
+                        submitStatus.type === 'success'
+                            ? 'bg-green-500/10 border border-green-500/30 text-green-400'
+                            : 'bg-red-500/10 border border-red-500/30 text-red-400'
+                    }`}>
+                        <div className="flex items-center gap-3">
+                            {submitStatus.type === 'success' ? (
+                                <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                </svg>
+                            ) : (
+                                <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                            )}
+                            <p>{submitStatus.message}</p>
+                        </div>
+                    </div>
+                )}
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 space-y-6">
@@ -69,6 +165,7 @@ export default function CustomQuotePage() {
                             onChange={handleInputChange}
                             className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                             placeholder="John Doe"
+                            disabled={isSubmitting}
                         />
                     </div>
 
@@ -86,6 +183,7 @@ export default function CustomQuotePage() {
                             onChange={handleInputChange}
                             className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                             placeholder="+1 234 567 8900"
+                            disabled={isSubmitting}
                         />
                     </div>
 
@@ -103,6 +201,7 @@ export default function CustomQuotePage() {
                             onChange={handleInputChange}
                             className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                             placeholder="john@example.com"
+                            disabled={isSubmitting}
                         />
                     </div>
 
@@ -118,6 +217,7 @@ export default function CustomQuotePage() {
                             value={formData.country}
                             onChange={handleInputChange}
                             className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                            disabled={isSubmitting}
                         >
                             <option value="">Select your country</option>
                             {countries.map((country) => (
@@ -142,6 +242,7 @@ export default function CustomQuotePage() {
                                     checked={formData.businessType === "sme"}
                                     onChange={handleInputChange}
                                     className="w-4 h-4 text-indigo-500 focus:ring-indigo-500 focus:ring-2"
+                                    disabled={isSubmitting}
                                 />
                                 <span className="ml-3 text-gray-300">SME Business</span>
                             </label>
@@ -154,6 +255,7 @@ export default function CustomQuotePage() {
                                     checked={formData.businessType === "enterprise"}
                                     onChange={handleInputChange}
                                     className="w-4 h-4 text-indigo-500 focus:ring-indigo-500 focus:ring-2"
+                                    disabled={isSubmitting}
                                 />
                                 <span className="ml-3 text-gray-300">Enterprise</span>
                             </label>
@@ -166,13 +268,14 @@ export default function CustomQuotePage() {
                                     checked={formData.businessType === "student"}
                                     onChange={handleInputChange}
                                     className="w-4 h-4 text-indigo-500 focus:ring-indigo-500 focus:ring-2"
+                                    disabled={isSubmitting}
                                 />
                                 <div className="ml-3 flex-1">
                                     <div className="flex items-center gap-2">
                                         <span className="text-gray-300">Student</span>
                                         <span className="px-2 py-0.5 bg-indigo-500/20 text-indigo-400 text-xs font-semibold rounded-full">
-                                            Special Offers Available
-                                        </span>
+                      Special Offers Available
+                    </span>
                                     </div>
                                     <p className="text-xs text-gray-500 mt-1">
                                         Students get exclusive discounts and flexible payment options
@@ -195,6 +298,7 @@ export default function CustomQuotePage() {
                                 value={formData.studentLevel}
                                 onChange={handleInputChange}
                                 className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                                disabled={isSubmitting}
                             >
                                 <option value="">Select your education level</option>
                                 <option value="pending-diploma">Pending Diploma</option>
@@ -242,6 +346,7 @@ export default function CustomQuotePage() {
                             rows={6}
                             className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition resize-none"
                             placeholder="Tell us about your project requirements, goals, and any specific features you need..."
+                            disabled={isSubmitting}
                         />
                     </div>
 
@@ -249,9 +354,20 @@ export default function CustomQuotePage() {
                     <div className="pt-4">
                         <button
                             type="submit"
-                            className="w-full px-8 py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-semibold rounded-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-950"
+                            disabled={isSubmitting}
+                            className="w-full px-8 py-4 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-semibold rounded-lg hover:from-indigo-500 hover:to-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-950 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Submit Quote Request
+                            {isSubmitting ? (
+                                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Submitting...
+                </span>
+                            ) : (
+                                'Submit Quote Request'
+                            )}
                         </button>
                     </div>
 
