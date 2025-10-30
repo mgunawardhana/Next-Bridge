@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 
-import TestimonialImg01 from "@/public/images/testimonial-01.jpg";
-import TestimonialImg02 from "@/public/images/testimonial-02.jpg";
+import TestimonialImg01 from "@/public/images/nimesh.jpg";
+import TestimonialImg02 from "@/public/images/sadun.jpg";
 import TestimonialImg07 from "@/public/images/testimonial-07.jpg";
 import TestimonialImg06 from "@/public/images/testimonial-06.jpg";
 
@@ -21,9 +21,9 @@ interface Developer {
 
 export function getDeveloperImage(imgPath: string): StaticImageData {
     switch (imgPath) {
-        case "/images/testimonial-01.jpg":
+        case "/images/nimesh.jpg":
             return TestimonialImg01;
-        case "/images/testimonial-02.jpg":
+        case "/images/sadun.jpg":
             return TestimonialImg02;
         case "/images/testimonial-07.jpg":
             return TestimonialImg07;

@@ -12,12 +12,12 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
     title:
-        "Enterprise Software with Real-Time Transparency & DevSecOps",
+        "Enterprise Consultation, Software Development & Real-Time Transparency",
     description:
-        "Enterprise software development with unrivaled transparency: real-time Git access, milestone dashboards, budget tracking, CI/CD visibility, and zero-downtime deployments. Agile + DevSecOps methodology delivers scalable, secure platforms with full audit trails and proactive risk management.",
+        "Enterprise consultation and software development with unrivaled transparency: real-time Git access, milestone dashboards, budget tracking, CI/CD visibility, and zero-downtime deployments. Agile + DevSecOps methodology delivers scalable, secure platforms with full audit trails and proactive risk management.",
     openGraph: {
         title:
-            "Enterprise Software with Real-Time Transparency & DevSecOps",
+            "Enterprise Consultation, Software Development & Real-Time Transparency",
         description:
             "Real-time code, budget, and risk visibility from day one. Zero-downtime deployments, 24/7 observability, and full audit trails.",
         type: "website",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title:
-            "Enterprise Software with Real-Time Transparency & DevSecOps",
+            "Expert Consultation, Software Development & Real-Time Transparency",
         description:
             "Live Git, CI/CD, budget dashboards & zero-downtime releases.",
     },
