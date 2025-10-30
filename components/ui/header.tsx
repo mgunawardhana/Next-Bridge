@@ -9,7 +9,7 @@ import { useState } from "react";
 function InlineLogo() {
     return (
         <Link href="/" className="flex items-center gap-2" aria-label="Home">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow-md">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 shadow-md">
                 <span className="text-sm font-bold text-white">NB</span>
             </div>
             <span className="hidden text-lg font-bold text-white sm:inline-block">
@@ -37,14 +37,6 @@ export default function Header() {
 
                     {/* ---------- Desktop links ---------- */}
                     <ul className="hidden md:flex md:flex-1 md:items-center md:justify-end md:gap-3">
-                        <li>
-                            <Link
-                                href="/packages"
-                                className="text-sm font-medium text-gray-300 hover:text-indigo-500 transition-colors"
-                            >
-                                Packages
-                            </Link>
-                        </li>
                         <li>
                             <Link
                                 href="/signin"
@@ -106,13 +98,6 @@ export default function Header() {
                                  "linear-gradient(to right, #1f2937, #374151, #1f2937)",
                          }}
                     >
-                        <Link
-                            href="/packages"
-                            onClick={() => setMobileOpen(false)}
-                            className="block rounded-lg px-4 py-3 text-sm font-medium text-gray-300 hover:bg-gray-800/50 hover:text-indigo-400 transition-colors"
-                        >
-                            Packages
-                        </Link>
                         <Link
                             href="/signin"
                             onClick={() => setMobileOpen(false)}

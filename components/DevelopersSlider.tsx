@@ -6,65 +6,42 @@ import { DeveloperCard } from "./DeveloperCard";
 const developers = [
     {
         id: 1,
-        name: "Aisha Sharma",
-        role: "Senior Full-Stack Developer",
-        img: "/images/testimonial-01.jpg",
-        username: "@aisha_dev",
-        bio: "Passionate about elegant code and scalable architecture. Focus on performance.",
-        specialization: "Full-Stack",
-        experience: "8 Years",
-        companies: ["TechCorp", "Innovate-X"],
-        degree: "M.S. Computer Science"
+        name: "Nimesh Piyumantha",
+        role: "Senior Mobile Engineer",
+        img: "/images/nimesh.jpg",
+        username: "@nimma",
+        bio: "Engineer passionate about elegant code, performance, and scalable mobile systems. Expert in architecting high-performing Flutter applications.",
+        specialization: "Mobile Development (Flutter)",
+        experience: "3+ Years",
+        companies: ["Kingteza", "Fcode Labs"],
+        degree: "B.Eng (Hons) Software Engineering"
     },
     {
         id: 2,
-        name: "Chen Li",
-        role: "Mobile Development Lead",
-        img: "/images/testimonial-02.jpg",
-        username: "@chen_mobile",
-        bio: "Specializing in native mobile development for iOS and Android platforms.",
-        specialization: "Mobile Development (iOS/Android)",
-        experience: "10 Years",
-        companies: ["GlobalApps", "MobileFirst"],
-        degree: "B.S. Software Engineering"
+        name: "Sandun Induranga",
+        role: "Software Engineer",
+        img: "/images/sadun.jpg",
+        username: "@sadun",
+        bio: "Flutter & TypeScript-focused engineer building cross-platform mobile apps, web applications, and Python-powered automation systems.",
+        specialization: "Mobile & Web Development",
+        experience: "3+ Years",
+        companies: ["Fcode Labs (Pvt) Ltd"],
+        degree: "B.Eng (Hons) Software Engineering"
     },
     {
         id: 3,
-        name: "Mateo Rodriguez",
-        role: "Backend Engineer",
+        name: "Maneesha Gunawardhana",
+        role: "Full-Stack Developer",
         img: "/images/testimonial-07.jpg",
-        username: "@mateo_back",
-        bio: "Building robust, secure, and highly available backend systems with Node & Go.",
-        specialization: "Backend (Node/Go)",
-        experience: "6 Years",
-        companies: ["DataFlow", "Serverless Solutions"],
-        degree: "B.A. Mathematics"
-    },
-    {
-        id: 4,
-        name: "Jessica V.",
-        role: "DevOps Engineer",
-        img: "/images/testimonial-06.jpg",
-        username: "@jess_devops",
-        bio: "Specializing in CI/CD, IaC (Terraform), and cloud infrastructure automation.",
-        specialization: "Cloud & DevOps",
-        experience: "5 Years",
-        companies: ["CloudCo", "AutoDeploy"],
-        degree: "B.S. Information Technology"
-    },
-    {
-        id: 5,
-        name: "Alex P.",
-        role: "AI/ML Specialist",
-        img: "/images/testimonial-01.jpg",
-        username: "@alex_ai",
-        bio: "Expert in deep learning models and scalable data pipelines.",
-        specialization: "Artificial Intelligence",
-        experience: "7 Years",
-        companies: ["DeepMind Inc.", "DataSense"],
-        degree: "Ph.D. Data Science"
-    },
+        username: "@mgunawardhana",
+        bio: "Full-stack engineer specializing in React, Next.js, and enterprise-grade backend systems with Spring Boot & Python.",
+        specialization: "Full Stack",
+        experience: "3+ Years",
+        companies: ["Dialog Axiata", "ZinCat Technologies"],
+        degree: "BSc (Hons) Software Engineering"
+    }
 ];
+
 
 export default function DevelopersSlider() {
     const [currentSlide, setCurrentSlide] = useState(1);

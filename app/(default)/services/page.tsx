@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "Our Services - Open PRO",
-    description: "Comprehensive software development services from concept to deployment",
+    title: "Consultation & Development Services - Open PRO",
+    description: "Expert consultation and comprehensive software development services from concept to deployment",
 };
 
 import PageIllustration from "@/components/page-illustration";
