@@ -16,6 +16,7 @@ const developers = [
         companies: ["Kingteza", "Fcode Labs"],
         degree: "B.Eng (Hons) Software Engineering"
     },
+
     {
         id: 2,
         name: "Sandun Induranga",
