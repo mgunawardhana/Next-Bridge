@@ -39,14 +39,6 @@ export default function Header() {
                     <ul className="hidden md:flex md:flex-1 md:items-center md:justify-end md:gap-3">
                         <li>
                             <Link
-                                href="/packages"
-                                className="text-sm font-medium text-gray-300 hover:text-indigo-500 transition-colors"
-                            >
-                                Packages
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
                                 href="/signin"
                                 className="btn-sm relative bg-linear-to-b from-gray-800 to-gray-800/60 bg-[length:100%_100%] bg-[bottom] py-[5px] text-gray-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,var(--color-gray-800),var(--color-gray-700),var(--color-gray-800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[length:100%_150%]"
                             >
@@ -106,13 +98,6 @@ export default function Header() {
                                  "linear-gradient(to right, #1f2937, #374151, #1f2937)",
                          }}
                     >
-                        <Link
-                            href="/packages"
-                            onClick={() => setMobileOpen(false)}
-                            className="block rounded-lg px-4 py-3 text-sm font-medium text-gray-300 hover:bg-gray-800/50 hover:text-indigo-400 transition-colors"
-                        >
-                            Packages
-                        </Link>
                         <Link
                             href="/signin"
                             onClick={() => setMobileOpen(false)}
