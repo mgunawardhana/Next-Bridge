@@ -207,7 +207,6 @@ export default function CustomQuotePage() {
                                 <option value="phd">PhD</option>
                             </select>
 
-                            {/* Student Special Offer Notice */}
                             <div className="mt-3 p-4 bg-indigo-500/10 border border-indigo-500/30 rounded-lg">
                                 <div className="flex items-start gap-3">
                                     <svg className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
