@@ -18,6 +18,7 @@ export default function HeroHome() {
                             Expert Consultation & Enterprise Software with Unrivaled Transparency
                         </h1>
                         <div className="mx-auto max-w-3xl">
+
                             <p
                                 className="mb-8 text-xl text-indigo-200/65"
                                 data-aos="fade-up"
