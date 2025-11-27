@@ -10,10 +10,10 @@ function InlineLogo() {
     return (
         <Link href="/" className="flex items-center gap-2" aria-label="Home">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 shadow-md">
-                <span className="text-sm font-bold text-white">NB</span>
+                <span className="text-sm font-bold text-white">W</span>
             </div>
             <span className="hidden text-lg font-bold text-white sm:inline-block">
-        Next - Bridge
+        WEB-WIZARDS
       </span>
         </Link>
     );
